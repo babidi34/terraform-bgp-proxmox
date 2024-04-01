@@ -13,7 +13,6 @@ provider "proxmox" {
   insecure = true
   ssh {
     agent    = true
-    username = "root"
   }
 }
 
@@ -67,6 +66,14 @@ resource "proxmox_virtual_environment_vm" "vm" {
       rate_limit  = lookup(network_device.value, "rate_limit", 0)
       vlan_id     = lookup(network_device.value, "vlan_id", null)
       # Ajoute d'autres configurations réseau ici si nécessaire.
+    }
+  }
+  initialization {
+    ip_config {
+      ipv4 {
+        address = lookup(each.value.ip_config, "ipv4_address", "dhcp")
+        gateway = lookup(each.value.ip_config, "ipv4_gateway", null)
+      }
     }
   }
 }

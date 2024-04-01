@@ -13,6 +13,10 @@ vms = {
       datastore_id = "local-lvm"
       size         = 50
     }]
+    ip_config = {
+      ipv4_address = "192.168.1.180/24"
+      ipv4_gateway = "192.168.1.254"
+    }
   },
   "vm2" = {
     name         = "debian-karim-terraform2"
@@ -33,5 +37,9 @@ vms = {
     disk       = [{
       datastore_id = "local-lvm"
     }]
+    ip_config = {
+      ipv4_address = "192.168.1.181/24"
+      ipv4_gateway = "192.168.1.254"
+    }
   }
 }
