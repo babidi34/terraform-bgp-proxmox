@@ -12,7 +12,9 @@ provider "proxmox" {
   api_token = var.api_token
   insecure = true
   ssh {
-    agent    = true
+    agent    = false
+    username = "root"
+    private_key = file(var.ssh_private_key)
   }
 }
 
@@ -47,9 +49,9 @@ resource "proxmox_virtual_environment_vm" "vm" {
 
     content {
       datastore_id = disk.value["datastore_id"]
-      size         = disk.value["size"]
+      size         = lookup(disk.value, "size", 30)
       file_format  = lookup(disk.value, "file_format", "qcow2")
-      interface    = lookup(disk.value, "interface", "virtio")
+      interface    = lookup(disk.value, "interface", "scsi")
       iothread     = lookup(disk.value, "iothread", false)
       discard      = lookup(disk.value, "discard", "ignore")
     }
@@ -75,5 +77,16 @@ resource "proxmox_virtual_environment_vm" "vm" {
         gateway = lookup(each.value.ip_config, "ipv4_gateway", null)
       }
     }
+    user_account {
+      keys     = lookup(each.value, "ssh_key_pub", null)
+      password = lookup(each.value, "password", random_password.vm_password.result)
+      username = lookup(each.value, "username", null)
+    }
   }
+}
+
+resource "random_password" "vm_password" {
+  length           = 16
+  override_special = "_%@"
+  special          = true
 }

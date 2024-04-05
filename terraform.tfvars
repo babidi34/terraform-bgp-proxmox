@@ -9,14 +9,17 @@ vms = {
     memory       = {
       dedicated = 2048
     }
-    disk       = [{
+    disks       = [{
       datastore_id = "local-lvm"
       size         = 50
+      interface    = "scsi0"
     }]
     ip_config = {
       ipv4_address = "192.168.1.180/24"
       ipv4_gateway = "192.168.1.254"
     }
+    username = "linux-man"
+    ssh_key_pub     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINr+Qt/kvbbUymF++edHDvXb7+AWclu64TpW8iLqLW5/ karimbaidi@gmail.com"]
   },
   "vm2" = {
     name         = "debian-karim-terraform2"
@@ -34,12 +37,18 @@ vms = {
       firewall = true
       model    = "e1000"
     }
-    disk       = [{
+    disks       = [{
       datastore_id = "local-lvm"
+      interface    = "scsi0"
     }]
     ip_config = {
       ipv4_address = "192.168.1.181/24"
       ipv4_gateway = "192.168.1.254"
     }
+    username = "linux-man"
+    ssh_key_pub     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINr+Qt/kvbbUymF++edHDvXb7+AWclu64TpW8iLqLW5/ karimbaidi@gmail.com"]
+
   }
 }
+node_name = "gon"
+datastore_id = "local-lvm"
