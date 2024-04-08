@@ -50,7 +50,7 @@ resource "proxmox_virtual_environment_vm" "vm" {
     content {
       datastore_id = disk.value["datastore_id"]
       size         = lookup(disk.value, "size", 30)
-      file_format  = lookup(disk.value, "file_format", "qcow2")
+      file_format  = lookup(disk.value, "file_format", "raw")
       interface    = lookup(disk.value, "interface", "scsi")
       iothread     = lookup(disk.value, "iothread", false)
       discard      = lookup(disk.value, "discard", "ignore")

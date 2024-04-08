@@ -1,8 +1,8 @@
 vms = {
   "vm1" = {
-    name         = "debian-karim-terraform"
+    name         = "debian11-karim-terraform"
     node_name    = "gon"
-    template_tag = "debian-12"
+    template_tag = "debian-11"
     cpu          = {
       cores        = 4
     }
@@ -22,7 +22,7 @@ vms = {
     ssh_key_pub     = ["ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAINr+Qt/kvbbUymF++edHDvXb7+AWclu64TpW8iLqLW5/ karimbaidi@gmail.com"]
   },
   "vm2" = {
-    name         = "debian-karim-terraform2"
+    name         = "debian12-karim-terraform"
     node_name    = "gon"
     template_tag = "debian-12"
     cpu          = {
