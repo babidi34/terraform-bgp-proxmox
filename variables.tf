@@ -23,3 +23,15 @@ variable "datastore_id" {
   description = "datastore_id == datastore name"
   type = string
 }
+
+variable "aws_access_key_id" {
+  type        = string
+  description = "AWS access key"
+  sensitive   = true
+}
+
+variable "aws_secret_access_key" {
+  type        = string
+  description = "AWS secret key"
+  sensitive   = true
+}

@@ -5,6 +5,18 @@ terraform {
       version = "0.51.0"
     }
   }
+  backend "s3" {
+    bucket         = "s3-slow"
+    key            = "hedi-proxmox-terraform.tfstate"
+    region         = "rbx"
+    endpoints = {
+      s3 = "https://s3.rbx.io.cloud.ovh.net/"
+    }
+    skip_credentials_validation = true
+    skip_region_validation      = true
+    skip_requesting_account_id  = true
+    skip_s3_checksum            = true
+  }
 }
 
 provider "proxmox" {
